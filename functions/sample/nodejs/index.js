@@ -1,27 +1,31 @@
 /**
- * Get all databases
+ * Get all dealerships
  */
 
-const { CloudantV1 } = require('@ibm-cloud/cloudant');
-const { IamAuthenticator } = require('ibm-cloud-sdk-core');
+const COUCH_URL = "hidden";
+const IAM_API_KEY = "hidden";
 
-function main(params) {
+const Cloudant = require('@cloudant/cloudant');
 
-  const authenticator = new IamAuthenticator({ apikey: params.IAM_API_KEY })
-  const cloudant = CloudantV1.newInstance({
-      authenticator: authenticator
-  });
-  cloudant.setServiceUrl(params.COUCH_URL);
+function main() {
 
-  let dbList = getDbs(cloudant);
-  return { dbs: dbList };
+    const cloudant = Cloudant({
+        url: COUCH_URL,
+        plugins: { iamauth: { iamApiKey: IAM_API_KEY } }
+    });
+
+    let dbList = getDbs(cloudant);
+    return { dbs: dbList };
 }
 
 function getDbs(cloudant) {
-    cloudant.getAllDbs().then((body) => {
+    dbList = [];
+    cloudant.db.list().then((body) => {
         body.forEach((db) => {
             dbList.push(db);
         });
     }).catch((err) => { console.log(err); });
 }
 
+result = main(COUCH_URL, IAM_API_KEY);
+console.log(result);

@@ -12,15 +12,16 @@ from cloudant.error import CloudantException
 import requests
 
 
-def main(dict):
+def main():
     databaseName = "dealerships"
 
     try:
         client = Cloudant.iam(
-            account_name=dict["COUCH_USERNAME"],
-            api_key=dict["IAM_API_KEY"],
+            account_name="hidden",
+            api_key="hidden",
             connect=True,
         )
+
         print("Databases: {0}".format(client.all_dbs()))
     except CloudantException as ce:
         print("unable to connect")
@@ -30,3 +31,5 @@ def main(dict):
         return {"error": err}
 
     return {"dbs": client.all_dbs()}
+
+main()

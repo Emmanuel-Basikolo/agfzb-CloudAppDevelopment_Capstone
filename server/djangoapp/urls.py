@@ -7,7 +7,7 @@ app_name = 'djangoapp'
 urlpatterns = [
     # route is a string contains a URL pattern
     # view refers to the view function
-    # name the URL 
+    # name the URL
 
     # path for about view
     path(route='about/', view=views.about, name='about'),
