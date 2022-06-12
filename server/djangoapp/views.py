@@ -95,7 +95,7 @@ def registration_request(request):
 # Update the `get_dealerships` view to render the index page with a list of dealerships
 def get_dealerships(request):
     if request.method == "GET":
-        url = "https://99cc092b.eu-gb.apigw.appdomain.cloud/api/dealerships"
+        url = "https://710cbbc6.eu-gb.apigw.appdomain.cloud/dealership/api/dealership"
         # Get dealers from the URL
         dealerships = get_dealers_from_cf(url)
 
@@ -109,7 +109,7 @@ def get_dealerships(request):
 # Create a `get_dealer_details` view to render the reviews of a dealer
 def get_dealer_details(request, dealer_id):
     if request.method == "GET":
-        url = "https://99cc092b.eu-gb.apigw.appdomain.cloud/api/reviews"
+        url = "https://710cbbc6.eu-gb.apigw.appdomain.cloud/review/api/review"
         
         # Get dealers from the URL
         reviews = get_dealer_reviews_from_cf(url, dealerId=dealer_id)
@@ -122,7 +122,7 @@ def get_dealer_details(request, dealer_id):
 
 
 def get_dealer_name(dealer_id):
-    url = "https://99cc092b.eu-gb.apigw.appdomain.cloud/api/dealerships"
+    url = "https://710cbbc6.eu-gb.apigw.appdomain.cloud/dealership/api/dealership"
     # Get dealers from the URL
     dealerships = get_dealers_from_cf(url)
 
@@ -135,7 +135,7 @@ def get_dealer_name(dealer_id):
 
 # Create a `add_review` view to submit a review
 def add_review(request, dealer_id):
-    url = "https://99cc092b.eu-gb.apigw.appdomain.cloud/api/review"
+    url = "https://710cbbc6.eu-gb.apigw.appdomain.cloud/review/api/review"
     # check if user is authenticated because only authenticated users can post reviews for a dealer.
     if request.user.is_authenticated:
         # If request is POST, update the json_payload["review"] to use the actual values obtained from the review form

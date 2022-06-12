@@ -28,13 +28,11 @@ class CarModel(models.Model):
     SEDAN = 'Sedan'
     SUV = 'SUV'
     WAGON = 'WAGON'
-    CABRIO = 'Cabrio'
 
     MODEL_CHOICES = [
         (SEDAN, 'Sedan'),
         (SUV, 'SUV'),
-        (WAGON, 'WAGON'),
-        (CABRIO, 'Cabrio')
+        (WAGON, 'WAGON')
     ]
 
     make = models.ForeignKey(CarMake, on_delete=models.CASCADE)

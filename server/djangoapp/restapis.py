@@ -45,15 +45,15 @@ def get_dealers_from_cf(url, **kwargs):
     json_result = get_request(url)
     if json_result:
         # Get the row list in JSON as dealers
-        dealers = json_result["dealershipList"]
+        dealers = json_result['entries']
         # For each dealer object
         for dealer in dealers:
             # Get its content in `doc` object
-
-            dealer_obj = CarDealer(address=dealer["address"], city=dealer["city"], full_name=dealer["full_name"],
-                        id=dealer["id"], lat=dealer["lat"], long=dealer["long"],
-                        short_name=dealer["short_name"],
-                        st=dealer["st"], zip=dealer["zip"], state=dealer["state"])
+            print(dealer)
+            dealer_obj = CarDealer(address=dealer['address'], city=dealer['city'], full_name='Unknown',
+                        id=dealer['id'], lat=dealer['lat'], long=dealer['long'],
+                        short_name='Unknown',
+                        st=dealer['st'], zip=dealer['zip'], state=dealer['state'])
 
             results.append(dealer_obj)
 
@@ -97,8 +97,8 @@ def get_dealer_reviews_from_cf(url, dealerId, **kwargs):
 # Create an `analyze_review_sentiments` method to call Watson NLU and analyze text
 def analyze_review_sentiments(text):
 
-    api_key = "szDAV8ZetaoOFdHQlSQA6-froONBCLXBaUrZYVruW9Er"
-    url = "https://api.eu-gb.natural-language-understanding.watson.cloud.ibm.com/instances/6cce82bc-eb8f-4698-9ccf-06caabeff72e"
+    api_key = "OxZexpmeLAabzlIuHL2NCDf01lqtPqfvh7h15vzbAPzA"
+    url = "https://api.eu-gb.natural-language-understanding.watson.cloud.ibm.com/instances/7ad5d7d3-5d08-4a6a-97b3-9e78871c7ddd"
 
     authenticator = IAMAuthenticator(api_key)
     natural_language_understanding = NaturalLanguageUnderstandingV1(
